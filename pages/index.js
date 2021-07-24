@@ -1,6 +1,10 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+
+import { FaCircle } from 'react-icons/fa';
 
 const characterEndpoint = `https://rickandmortyapi.com/api/character/`;
 
@@ -14,6 +18,8 @@ export async function getServerSideProps() {
 export default function Home({ data }) {
   const { results = [] } = data;
 
+  console.log(results);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,17 +29,34 @@ export default function Home({ data }) {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Wubba lubba dub duuub!</h1>
+        <h1 className={styles.title}>Wubba lubba dub duub</h1>
 
         <ul className={styles.grid}>
           {results.map((c) => {
             const { id, name, image } = c;
-            console.log(name);
 
             return (
               <li key={id} className={styles.card}>
-                <img src={image} alt={`${name} Thumbnail`} />
-                <h3>{name}</h3>
+                <div className={styles.image}>
+                  <img src={image} alt={`${name} Thumbnail`} />
+                </div>
+                <div className={styles.info}>
+                  <h2 className={styles.name}>{name}</h2>
+                  <div className={styles.status}>
+                    <h5>
+                      <span>
+                        <FaCircle
+                          className={
+                            c.status == 'Alive' ? styles.green : styles.red
+                          }
+                        />
+                      </span>
+                      {c.status == 'Alive' ? 'Alive' : 'Dead'} - {c.species}
+                    </h5>
+
+                    <h4> </h4>
+                  </div>
+                </div>
               </li>
             );
           })}

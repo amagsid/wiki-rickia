@@ -76,18 +76,24 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
-  height: 200px;
+  max-width: 75%;
+  height: 50vh;
   margin-top: 3rem;
   list-style: none;
   margin-left: 0;
   padding-left: 0;
   background-color: black;
+  flex: 1; /* formerly flex: 1 0 auto; */
+
+  min-height: 0; /* new */
 }
 
 .card {
-  margin: 1rem;
-  padding: 1.5rem;
+  /* justify-content: flex-start; */
+  display: flex;
+  /* flex-direction: row; */
+  margin: 0 1rem 1.5rem 0;
+  padding: 0 1.5rem 0 0;
   text-align: left;
   color: inherit;
   text-decoration: none;
@@ -97,16 +103,30 @@
   width: 40%;
 }
 
+.card img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.card:hover h3,
+.card:focus h3,
+.card:active h3 {
+  color: #0070f3;
+}
+
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
   border-color: #0070f3;
 }
 
 .card h2 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
+}
+
+.info {
+  margin: 1rem 1rem 1rem 1rem;
 }
 
 .card p {
@@ -119,6 +139,18 @@
   height: 1em;
   margin-left: 0.5rem;
 }
+
+.green {
+  color: rgb(85, 185, 85);
+}
+
+.red {
+  color: rgb(221, 5, 5);
+}
+
+/* .status{
+  width
+} */
 
 @media (max-width: 600px) {
   .grid {
