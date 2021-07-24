@@ -12,6 +12,8 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ data }) {
+  const { results = [] } = data;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -24,11 +26,17 @@ export default function Home({ data }) {
         <h1 className={styles.title}>Wubba lubba dub duuub!</h1>
 
         <ul className={styles.grid}>
-          <li className={styles.card}>
-            <a href='https://nextjs.org/docs'>
-              <h3>My Character</h3>
-            </a>
-          </li>
+          {results.map((c) => {
+            const { id, name, image } = c;
+            console.log(name);
+
+            return (
+              <li key={id} className={styles.card}>
+                <img src={image} alt={`${name} Thumbnail`} />
+                <h3>{name}</h3>
+              </li>
+            );
+          })}
         </ul>
       </main>
 
